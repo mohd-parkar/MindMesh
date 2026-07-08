@@ -80,12 +80,12 @@ router.post("/chat", async(req,res)=>{
 
     // validation
     if(!threadId || !message){
-        return res.status(404).json({message : "not found"});
+        return res.status(400).json({message : "not found"});
     };
 
     try{
         // now check if thread exists (old thread to append the data) or to create new threat to store the data into 
-        const thread = await ThreadModel.findOne({threadId});
+        let thread = await ThreadModel.findOne({threadId});
 
         if(!thread){ // new thread to create for storing the user message
             thread = new ThreadModel({
