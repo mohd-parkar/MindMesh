@@ -5,7 +5,7 @@ function Sidebar(){
         <section className="sidebar">
             <button>
                 <img src="src/assets/ai-brain.png" alt="logo" className="logo"></img>
-                <i class="fa-solid fa-pen-to-square"></i>
+                <i className="fa-solid fa-pen-to-square"></i>
             </button>
 
             <ul className="history">
