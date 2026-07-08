@@ -1,7 +1,8 @@
 import "./ChatWindow.css";
 import { MyContext } from "./MyContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import {ScaleLoader , HashLoader } from 'react-spinners';
 
 import Chat from "./Chat";
 
@@ -9,8 +10,11 @@ function ChatWindow() {
   const { prompt, setPrompt, reply, setReply, currThreadId } =
     useContext(MyContext);
 
+    const [loading,setLoading] = useState(false); 
+
   // submit button handler
   const getReply = async () => {
+    setLoading(true);
     try {
       let res = await axios.post("http://localhost:8080/api/v1/chat", {
         message: prompt,
@@ -20,6 +24,8 @@ function ChatWindow() {
       console.log(res.data); // we got reply to our user typed input
 
       setReply(res.data);
+
+      setLoading(false);
     } catch (err) {
       console.error(err);
     }
@@ -39,6 +45,8 @@ function ChatWindow() {
       </div>
 
       <Chat />
+
+       {loading ? <ScaleLoader color="#fff" /> : ""}
 
       <div className="chatInput">
         <div className="inputBox">
