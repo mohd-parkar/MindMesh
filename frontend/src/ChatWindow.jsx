@@ -1,13 +1,13 @@
 import "./ChatWindow.css";
 import { MyContext } from "./MyContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import {ScaleLoader , HashLoader } from 'react-spinners';
 
 import Chat from "./Chat";
 
 function ChatWindow() {
-  const { prompt, setPrompt, reply, setReply, currThreadId } =
+  const { prompt, setPrompt, reply, setReply, currThreadId ,prevChat, setPrevChat } =
     useContext(MyContext);
 
     const [loading,setLoading] = useState(false); 
@@ -23,13 +23,32 @@ function ChatWindow() {
 
       console.log(res.data); // we got reply to our user typed input
 
-      setReply(res.data);
+      setReply(res.data.reply);
 
       setLoading(false);
     } catch (err) {
       console.error(err);
     }
   };
+
+ useEffect(() => {
+  if (prompt && reply) {
+    setPrevChat(prev => [
+      ...prev,
+      {
+        role: "user",
+        content: prompt,
+      },
+      {
+        role: "assistant",
+        content: reply,
+      },
+    ]);
+  }
+
+  setPrompt("");
+}, [reply]);
+
 
   return (
     <div className="ChatWindow">

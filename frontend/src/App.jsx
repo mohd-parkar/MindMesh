@@ -10,8 +10,10 @@ function App() {
   const [prompt,setPrompt] = useState("");
   const[reply,setReply] = useState(null);
   const[currThreadId,setCurrThreadId] = useState(uuidv1());
+  const[prevChat,setPrevChat] = useState([]); // array to store the chat (user prompt + reply)
+  const[newChat,setNewChat] = useState(true); // track if newchat
 
-  const providerValues = {prompt,setPrompt,reply,setReply,currThreadId,setCurrThreadId};// passing values
+  const providerValues = {prompt,setPrompt,reply,setReply,currThreadId,setCurrThreadId,prevChat,setPrevChat,newChat,setNewChat};// passing values
 
   return (
     <div className='app'>
