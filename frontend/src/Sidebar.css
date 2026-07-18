@@ -9,8 +9,8 @@
 }
 
 .history {
-    flex: 1;            /* Take remaining space */
-    overflow-y: auto;   /* Only history scrolls */
+    flex: 1;          
+    overflow-y: auto;   
     margin: 10px;
     padding: 10px;
     min-height: 0;      /* Important for flex layouts */
