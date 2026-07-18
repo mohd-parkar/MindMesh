@@ -1,6 +1,7 @@
 .chats {
     width: 100%;
     max-width: 800px;
+    height: 100vh;
     overflow-y: auto;
     padding: 20px;
     scrollbar-width: thin;
@@ -23,20 +24,23 @@
 .userDiv {
     display: flex;
     justify-content: flex-end;
-    padding-bottom: 19px;
+    margin-bottom: 18px;
 }
 
 .gptDiv {
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 18px;
 }
 
 .userMessage {
     background: #323232;
-    padding: 2px 20px;
+    color: white;
+    padding: 12px 18px;
     border-radius: 16px;
     max-width: 75%;
     width: fit-content;
+    line-height: 1.6;
 }
 
 .gptMessage {
@@ -45,27 +49,75 @@
     text-align: left;
     line-height: 1.7;
     font-size: 16px;
+    color: white;
+}
+
+.gptMessage p {
+    margin: 10px 0;
+}
+
+.gptMessage ul,
+.gptMessage ol {
+    margin-left: 24px;
+}
+
+.gptMessage li {
+    margin: 6px 0;
+}
+
+.gptMessage h1,
+.gptMessage h2,
+.gptMessage h3,
+.gptMessage h4 {
+    margin: 16px 0 10px;
+}
+
+.gptMessage blockquote {
+    border-left: 4px solid #666;
+    padding-left: 14px;
+    color: #cfcfcf;
+    margin: 12px 0;
+}
+
+.gptMessage table {
+    border-collapse: collapse;
+    width: 100%;
     margin: 14px 0;
 }
 
-/* -------------------------- */
-/* Markdown Code Block Styles */
-/* -------------------------- */
+.gptMessage table,
+.gptMessage th,
+.gptMessage td {
+    border: 1px solid #555;
+}
+
+.gptMessage th,
+.gptMessage td {
+    padding: 8px;
+}
+
+.gptMessage img {
+    max-width: 100%;
+    border-radius: 10px;
+}
 
 pre {
     overflow-x: auto;
     padding: 16px;
-    border-radius: 10px;
-    margin: 12px 0;
+    border-radius: 12px;
+    margin: 14px 0;
 }
 
 code {
     font-family: Consolas, Monaco, monospace;
 }
 
-/* Inline code */
 :not(pre) > code {
-    background-color: #333;
+    background: #333;
     padding: 2px 6px;
     border-radius: 4px;
+}
+
+.hljs {
+    border-radius: 12px;
 }
