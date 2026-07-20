@@ -36,7 +36,7 @@ function Chat() {
 
     return (
         <>
-            {newChat && <h1>Start a New Chat!</h1>}
+            {newChat && <h1>What's on your mind today ?</h1>}
 
             <div className="chats">
 
