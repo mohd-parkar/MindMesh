@@ -4,7 +4,7 @@ An AI-powered chat application that leverages advanced machine learning to provi
 
 ## About MindMesh
 
-MindMesh is a modern chat application designed to deliver seamless, intelligent communication through AI technology. Whether you're looking for a virtual assistant, creative writing partner, or collaborative problem-solving tool, MindMesh provides a user-friendly interface with powerful AI capabilities.
+MindMesh is a modern chat application designed to deliver seamless, intelligent communication through AI technology. Whether you're looking for a virtual assistant, creative writing partner, or collaborative tool, MindMesh provides an intuitive and powerful platform for intelligent conversations.
 
 ## Features
 
@@ -47,9 +47,117 @@ MindMesh/
 
 ### Backend
 - **Runtime**: Node.js
-- **AI Integration**: Advanced NLP models
-- **Database**: Optimized for chat data storage
+- **Framework**: Express.js
+- **Database**: MongoDB
+- **AI Integration**: OpenAI API
 - **API**: RESTful architecture
+
+## Database Schema
+
+### Thread Model
+The Thread model represents a chat conversation session containing multiple messages.
+
+```javascript
+{
+  threadId: String (unique, required) - Unique identifier for the chat session
+  title: String (default: "New Chat") - Title of the conversation
+  messages: [Message] - Array of message objects in the conversation
+  createdAt: Date (default: current date) - When the thread was created
+  updatedAt: Date (default: current date) - When the thread was last updated
+}
+```
+
+### Message Schema
+The Message schema represents individual messages within a thread.
+
+```javascript
+{
+  role: String (enum: ["user", "assistant"], required) - Role of the message sender
+  content: String (required) - The actual message content
+  timestamp: Date (default: current date) - When the message was sent
+}
+```
+
+## API Routes
+
+All API routes are prefixed with `/api/v1/`
+
+### Chat Routes
+
+#### 1. Create Test Thread
+- **Endpoint**: `POST /api/v1/test`
+- **Description**: Test route to create a new thread in the database
+- **Request Body**:
+  ```json
+  {
+    "threadId": "string (unique identifier)",
+    "title": "string (optional conversation title)"
+  }
+  ```
+- **Response**: Returns the created thread object
+- **Status Codes**: 
+  - `200`: Thread created successfully
+  - `500`: Error while posting the thread
+
+#### 2. Get All Threads
+- **Endpoint**: `GET /api/v1/thread`
+- **Description**: Fetch all chat threads sorted by most recently updated first
+- **Response**: Returns an array of all thread objects sorted by `updatedAt` in descending order
+- **Status Codes**:
+  - `200`: Threads fetched successfully
+  - `500`: Error occurred during fetching threads
+
+#### 3. Get Specific Thread
+- **Endpoint**: `GET /api/v1/thread/:threadId`
+- **Description**: Retrieve a specific thread by its threadId
+- **Parameters**:
+  - `threadId` (path parameter): The unique thread identifier
+- **Response**: Returns the thread object with all its messages
+- **Status Codes**:
+  - `200`: Thread fetched successfully
+  - `404`: Thread not found
+  - `500`: Error occurred during fetching the thread
+
+#### 4. Delete Thread
+- **Endpoint**: `DELETE /api/v1/thread/:threadId`
+- **Description**: Delete a specific thread and all its messages
+- **Parameters**:
+  - `threadId` (path parameter): The unique thread identifier
+- **Response**: Success message with status code
+- **Status Codes**:
+  - `200`: Thread deleted successfully
+  - `404`: Thread not found
+  - `500`: Error occurred during deletion of thread
+
+#### 5. Send Chat Message (Main Route)
+- **Endpoint**: `POST /api/v1/chat`
+- **Description**: Main route for sending messages. Handles storing user messages and getting AI-powered responses from OpenAI
+- **Request Body**:
+  ```json
+  {
+    "threadId": "string (unique thread identifier)",
+    "message": "string (user message content)"
+  }
+  ```
+- **Process Flow**:
+  1. Validates that both threadId and message are provided
+  2. Checks if thread exists:
+     - If new thread: Creates new thread with user message as title
+     - If existing thread: Appends message to existing thread
+  3. Sends message to OpenAI API for intelligent response generation
+  4. Stores both user message and AI response in the thread
+  5. Updates the `updatedAt` timestamp
+  6. Saves the thread to database
+- **Response**: Returns the AI assistant's reply
+  ```json
+  {
+    "reply": "string (AI-generated response)"
+  }
+  ```
+- **Status Codes**:
+  - `200`: Message processed successfully and response generated
+  - `400`: Missing threadId or message in request body
+  - `500`: Error occurred during storing the data in the thread
 
 ## Getting Started
 
@@ -57,6 +165,8 @@ MindMesh/
 - Node.js (v14 or higher)
 - npm or yarn package manager
 - Git
+- MongoDB URI (for database connection)
+- OpenAI API Key (for AI responses)
 
 ### Installation
 
@@ -78,6 +188,13 @@ MindMesh/
    npm install
    ```
 
+4. **Setup Environment Variables**
+   Create a `.env` file in the backend directory:
+   ```
+   MONGODB_URI=your_mongodb_connection_string
+   OPENAI_API_KEY=your_openai_api_key
+   ```
+
 ### Running the Application
 
 **Start the Backend Server**
@@ -97,9 +214,10 @@ The application will be available at `http://localhost:3000`
 ## Usage
 
 1. Open the application in your browser
-2. Start a new chat session
+2. Start a new chat session (or use an existing thread ID)
 3. Type your message to interact with the AI
-4. Enjoy intelligent, context-aware conversations
+4. View conversation history within each thread
+5. Delete conversations as needed
 
 ## Development
 
@@ -143,6 +261,8 @@ We welcome contributions to MindMesh! To contribute:
 - [ ] Multi-language support
 - [ ] Mobile app development
 - [ ] Advanced analytics and insights
+- [ ] Voice message support
+- [ ] File sharing capabilities
 
 ## License
 
