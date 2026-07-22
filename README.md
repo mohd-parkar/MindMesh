@@ -4,7 +4,7 @@ An AI-powered chat application that leverages advanced machine learning to provi
 
 ## About MindMesh
 
-MindMesh is a modern chat application designed to deliver seamless, intelligent communication through AI technology. Whether you're looking for a virtual assistant, creative writing partner, or collaborative tool, MindMesh provides an intuitive and powerful platform for intelligent conversations.
+MindMesh is a modern chat application designed to deliver seamless, intelligent communication through AI technology. Whether you're looking for a virtual assistant, creative writing partner, or collab[...]
 
 ## Features
 
@@ -32,11 +32,117 @@ MindMesh is a modern chat application designed to deliver seamless, intelligent 
 
 ```
 MindMesh/
-├── frontend/          # React-based frontend application
-├── backend/           # Backend API and AI integration
-├── README.md          # Project documentation
-└── .gitignore         # Git ignore rules
+├── frontend/                    # React-based frontend application
+│   ├── public/                  # Static files
+│   │   ├── index.html           # Main HTML file
+│   │   └── favicon.ico          # Application icon
+│   ├── src/                     # Source code
+│   │   ├── components/          # Reusable React components
+│   │   │   ├── ChatWindow.jsx   # Main chat interface component
+│   │   │   ├── MessageList.jsx  # Message display component
+│   │   │   ├── InputBox.jsx     # User input component
+│   │   │   └── Sidebar.jsx      # Navigation and thread list
+│   │   ├── pages/               # Page components
+│   │   │   ├── Home.jsx         # Home page
+│   │   │   └── Chat.jsx         # Chat page
+│   │   ├── context/             # Context API for state management
+│   │   │   ├── ChatContext.js   # Global chat state
+│   │   │   └── ThreadContext.js # Thread management context
+│   │   ├── hooks/               # Custom React hooks
+│   │   │   ├── useFetch.js      # API call hook
+│   │   │   └── useThreads.js    # Thread management hook
+│   │   ├── services/            # API service functions
+│   │   │   └── api.js           # API endpoints and calls
+│   │   ├── styles/              # CSS files
+│   │   │   ├── App.css          # Global styles
+│   │   │   └── Chat.css         # Chat-specific styles
+│   │   ├── App.jsx              # Root component
+│   │   └── index.js             # React DOM render entry point
+│   ├── package.json             # Frontend dependencies
+│   └── .env                     # Frontend environment variables
+│
+├── backend/                     # Backend API and AI integration
+│   ├── models/                  # Database models
+│   │   ├── Thread.js            # Thread schema and model
+│   │   └── Message.js           # Message schema and model
+│   ├── controllers/             # Route handlers and business logic
+│   │   ├── threadController.js  # Thread operations (CRUD)
+│   │   ├── chatController.js    # Chat operations and AI integration
+│   │   └── messageController.js # Message operations
+│   ├── routes/                  # API route definitions
+│   │   ├── threadRoutes.js      # Thread-related routes
+│   │   ├── chatRoutes.js        # Chat and message routes
+│   │   └── index.js             # Route aggregation
+│   ├── middleware/              # Express middleware
+│   │   ├── errorHandler.js      # Error handling middleware
+│   │   ├── validator.js         # Input validation middleware
+│   │   └── auth.js              # Authentication middleware
+│   ├── services/                # Business logic services
+│   │   ├── openaiService.js     # OpenAI API integration
+│   │   ├── threadService.js     # Thread business logic
+│   │   └── chatService.js       # Chat business logic
+│   ├── utils/                   # Utility functions
+│   │   ├── logger.js            # Logging utility
+│   │   ├── errorMessages.js     # Error message constants
+│   │   └── validators.js        # Validation utility functions
+│   ├── config/                  # Configuration files
+│   │   ├── database.js          # MongoDB connection
+│   │   ├── env.js               # Environment variables loader
+│   │   └── constants.js         # Application constants
+│   ├── server.js                # Express server setup
+│   ├── app.js                   # Express app configuration
+│   ├── package.json             # Backend dependencies
+│   ├── .env                     # Backend environment variables
+│   └── .env.example             # Example environment variables
+│
+├── README.md                    # Project documentation
+└── .gitignore                   # Git ignore rules
 ```
+
+### Frontend Structure Details
+
+**components/** - Reusable UI components that compose the application interface
+- `ChatWindow.jsx`: Container for the entire chat interface
+- `MessageList.jsx`: Displays all messages in a thread
+- `InputBox.jsx`: Input field for user messages
+- `Sidebar.jsx`: Shows thread list and navigation controls
+
+**context/** - Global state management using React Context API
+- Manages chat state, threads, and user interactions globally
+- Reduces prop drilling across components
+
+**services/** - API communication layer
+- Handles all HTTP requests to the backend
+- Centralizes API endpoint definitions
+
+### Backend Structure Details
+
+**models/** - MongoDB schema definitions using Mongoose
+- Defines data structure and validation rules
+- Establishes database relationships
+
+**controllers/** - Request handlers containing business logic
+- Processes incoming requests
+- Calls services to perform operations
+- Returns responses to the client
+
+**routes/** - API endpoint definitions
+- Maps HTTP methods to controller functions
+- Defines route parameters and paths
+
+**middleware/** - Processing layer for requests
+- Error handling and validation
+- Authentication and authorization checks
+
+**services/** - Core business logic separated from controllers
+- OpenAI API integration
+- Database operations
+- Complex business logic processing
+
+**config/** - Application configuration
+- Database connection setup
+- Environment variable management
+- Application constants
 
 ## Tech Stack
 
