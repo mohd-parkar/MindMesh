@@ -1,10 +1,8 @@
 # MindMesh
 
-An AI-powered chat application that leverages advanced machine learning to provide intelligent, context-aware conversations.
-
-## About MindMesh
-
 MindMesh is a modern chat application designed to deliver seamless, intelligent communication through AI technology. Whether you're looking for a virtual assistant, creative writing partner, or collaboration tool, MindMesh provides an intelligent platform for dynamic conversations powered by cutting-edge AI.
+
+Deployed Link 🚀 -
 
 ## Project Structure
 
