@@ -7,7 +7,7 @@ import {ScaleLoader , HashLoader } from 'react-spinners';
 import Chat from "./Chat";
 
 function ChatWindow() {
-  const { prompt, setPrompt, reply, setReply, currThreadId ,prevChat, setPrevChat } =
+  const { prompt, setPrompt, reply, setReply, currThreadId ,prevChat, setPrevChat,setNewChat } =
     useContext(MyContext);
 
     const [loading,setLoading] = useState(false); 
@@ -15,6 +15,7 @@ function ChatWindow() {
   // submit button handler
   const getReply = async () => {
     setLoading(true);
+    setNewChat(false);
     try {
       let res = await axios.post("http://localhost:8080/api/v1/chat", {
         message: prompt,
