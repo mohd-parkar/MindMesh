@@ -22,7 +22,6 @@ function ChatWindow() {
         threadId: currThreadId,
       });
 
-      console.log(res.data); // we got reply to our user typed input
 
       setReply(res.data.reply);
 
