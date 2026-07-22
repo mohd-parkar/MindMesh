@@ -53,7 +53,7 @@ function Sidebar() {
 
             const res = await response.json();
 
-            setPrevChat(res);
+            setPrevChat(res.messages);
             setNewChat(false);
             setReply(null);
         } catch (err) {
