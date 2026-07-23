@@ -22,7 +22,6 @@ function ChatWindow() {
         threadId: currThreadId,
       });
 
-
       setReply(res.data.reply);
 
       setLoading(false);
