@@ -17,7 +17,7 @@ function ChatWindow() {
     setLoading(true);
     setNewChat(false);
     try {
-      let res = await axios.post("http://localhost:8080/api/v1/chat", {
+      let res = await axios.post("https://mindmesh-backend-5z3m.onrender.com/api/v1/chat", {
         message: prompt,
         threadId: currThreadId,
       });

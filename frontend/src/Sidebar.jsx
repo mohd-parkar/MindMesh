@@ -17,7 +17,7 @@ function Sidebar() {
 
     const getAllThreads = async () => {
         try {
-            const response = await fetch("http://localhost:8080/api/v1/thread");
+            const response = await fetch("https://mindmesh-backend-5z3m.onrender.com/api/v1/thread");
             const res = await response.json();
 
             const filteredData = res.map((thread) => ({
@@ -48,7 +48,7 @@ function Sidebar() {
             setCurrThreadId(newThreadId);
 
             const response = await fetch(
-                `http://localhost:8080/api/v1/thread/${newThreadId}`
+                `https://mindmesh-backend-5z3m.onrender.com/api/v1/thread/${newThreadId}`
             );
 
             const res = await response.json();
@@ -64,7 +64,7 @@ function Sidebar() {
     const deleteThread = async (threadId) => {
         try {
             const response = await fetch(
-                `http://localhost:8080/api/v1/thread/${threadId}`,
+                `https://mindmesh-backend-5z3m.onrender.com/thread/api/v1/${threadId}`,
                 {
                     method: "DELETE",
                 }
