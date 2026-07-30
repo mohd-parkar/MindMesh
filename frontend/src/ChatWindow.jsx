@@ -74,7 +74,9 @@ function ChatWindow({ onMenuClick }) {
 
       <Chat />
 
+    <div className="loader">
        {loading ? <ScaleLoader color="#fff" /> : ""}
+      </div>
 
       <div className="chatInput">
         <div className="inputBox">
