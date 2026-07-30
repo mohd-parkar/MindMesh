@@ -1,5 +1,4 @@
 # MindMesh
--- working
 
 MindMesh is a modern chat application designed to deliver seamless, intelligent communication through AI technology. Whether you're looking for a virtual assistant, creative writing partner, or collaboration tool, MindMesh provides an intelligent platform for dynamic conversations powered by cutting-edge AI.
 
