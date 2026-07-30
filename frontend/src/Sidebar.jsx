@@ -4,7 +4,7 @@ import { MyContext } from "./MyContext";
 import { v1 as uuidv1 } from "uuid";
 import logo from "./assets/ai-brain.png";
 
-function Sidebar() {
+function Sidebar({ isOpen, onClose }) {
     const {
         allThreads,
         setAllThreads,
@@ -46,6 +46,7 @@ function Sidebar() {
 
     const changeThread = async (newThreadId) => {
         try {
+            onClose?.();
             setCurrThreadId(newThreadId);
 
             const response = await fetch(
@@ -86,7 +87,13 @@ function Sidebar() {
     };
 
     return (
-        <section className="sidebar">
+        <>
+        <div
+            className={`sidebar-overlay ${isOpen ? "visible" : ""}`}
+            onClick={onClose}
+            aria-hidden="true"
+        />
+        <section className={`sidebar ${isOpen ? "open" : ""}`}>
             <button onClick={createNewChat}>
                 <img
                     src={logo}
@@ -121,6 +128,7 @@ function Sidebar() {
                 <p>By Mohd Parkar</p>
             </div>
         </section>
+        </>
     );
 }
 

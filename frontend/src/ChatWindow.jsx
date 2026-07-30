@@ -6,7 +6,7 @@ import {ScaleLoader , HashLoader } from 'react-spinners';
 
 import Chat from "./Chat";
 
-function ChatWindow() {
+function ChatWindow({ onMenuClick }) {
   const { prompt, setPrompt, reply, setReply, currThreadId ,prevChat, setPrevChat,setNewChat } =
     useContext(MyContext);
 
@@ -53,12 +53,22 @@ function ChatWindow() {
     <div className="ChatWindow">
       <div className="navbar">
         <span>
-          MindMesh&nbsp;<i className="fa-solid fa-chevron-down"></i>
+          MindMesh&nbsp;
         </span>
-        <div className="userIconDiv">
-          <span className="userIcon">
-            <i className="fa-solid fa-user"></i>
-          </span>
+        <div className="navbar-right">
+          <button
+            type="button"
+            className="menu-toggle"
+            onClick={onMenuClick}
+            aria-label="Toggle sidebar"
+          >
+            <i className="fa-solid fa-bars"></i>
+          </button>
+          <div className="userIconDiv">
+            <span className="userIcon">
+              <i className="fa-solid fa-user"></i>
+            </span>
+          </div>
         </div>
       </div>
 

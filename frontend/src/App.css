@@ -14,4 +14,11 @@ body{
   display: flex;
   height: 100vh;
   overflow: hidden;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
 }

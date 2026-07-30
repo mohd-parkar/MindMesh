@@ -3,21 +3,25 @@
     color: #b4b4b4;
     height: 100vh;
     width: 320px;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    overflow: hidden;   /* Important */
+    overflow: hidden;
+}
+
+.sidebar-overlay {
+    display: none;
 }
 
 .history {
-    flex: 1;          
-    overflow-y: auto;   
+    flex: 1;
+    overflow-y: auto;
     margin: 10px;
     padding: 10px;
-    min-height: 0;      /* Important for flex layouts */
+    min-height: 0;
 }
 
-
-button{
+.sidebar button {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,29 +29,27 @@ button{
     padding: 10px;
     border-radius: 5px;
     background-color: transparent;
-    border: solid 1px rgba(255,255,255,0.5);
+    border: solid 1px rgba(255, 255, 255, 0.5);
     cursor: pointer;
 }
 
-.logo{
+.logo {
     height: 27px;
     width: 27px;
     background-color: #fff;
     border-radius: 40%;
     object-fit: cover;
-
 }
 
-button i {
+.sidebar button i {
     font-size: 20px;
 }
 
-button:hover{
-    background-color: rgba(180,180,180,0.05);
+.sidebar button:hover {
+    background-color: rgba(180, 180, 180, 0.05);
 }
 
-
-.history li{
+.history li {
     list-style-type: none;
     cursor: pointer;
     padding: 2px 5px;
@@ -57,15 +59,72 @@ button:hover{
     position: relative;
 }
 
-.history li:hover{
-    background-color: rgba(180,180,180,0.05);
+.history li:hover {
+    background-color: rgba(180, 180, 180, 0.05);
     border-radius: 10px;
 }
 
-.sign{
+.sign {
     padding: 10px;
     margin: 10px;
     font-size: 10px;
     text-align: center;
-    border-top: solid 0.2px rgba(255,255,255,0.5);
+    border-top: solid 0.2px rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .sidebar-overlay.visible {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        width: 280px;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar button {
+        margin: 8px;
+        padding: 8px;
+    }
+
+    .logo {
+        height: 24px;
+        width: 24px;
+    }
+
+    .sidebar button i {
+        font-size: 18px;
+    }
+
+    .history {
+        margin: 8px;
+        padding: 8px;
+    }
+
+    .history li {
+        font-size: 13px;
+    }
+
+    .sign {
+        font-size: 9px;
+        padding: 8px;
+        margin: 8px;
+    }
 }

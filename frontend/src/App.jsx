@@ -7,6 +7,7 @@ import {v1 as uuidv1} from 'uuid';
 
 function App() {
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [prompt,setPrompt] = useState("");
   const[reply,setReply] = useState(null);
   const[currThreadId,setCurrThreadId] = useState(uuidv1());
@@ -20,8 +21,11 @@ function App() {
   return (
     <div className='app'>
     <MyContext.Provider value = {providerValues}>
-      <Sidebar/>
-      <ChatWindow/>
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
+      <ChatWindow onMenuClick={() => setSidebarOpen((prev) => !prev)} />
     </MyContext.Provider>
     </div>
   )

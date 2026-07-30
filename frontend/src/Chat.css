@@ -4,6 +4,7 @@
     height: 100vh;
     overflow-y: auto;
     padding: 20px;
+    box-sizing: border-box;
     scrollbar-width: thin;
     scrollbar-color: #444 #212121;
 }
@@ -41,6 +42,7 @@
     max-width: 75%;
     width: fit-content;
     line-height: 1.6;
+    font-size: 16px;
 }
 
 .gptMessage {
@@ -120,4 +122,75 @@ code {
 
 .hljs {
     border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+    .chats {
+        padding: 12px;
+        max-width: 100%;
+    }
+
+    .userDiv,
+    .gptDiv {
+        margin-bottom: 14px;
+    }
+
+    .userMessage {
+        padding: 10px 14px;
+        border-radius: 14px;
+        max-width: 85%;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .gptMessage {
+        max-width: 100%;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .gptMessage p {
+        margin: 8px 0;
+    }
+
+    .gptMessage ul,
+    .gptMessage ol {
+        margin-left: 18px;
+    }
+
+    .gptMessage h1,
+    .gptMessage h2,
+    .gptMessage h3,
+    .gptMessage h4 {
+        margin: 12px 0 8px;
+        font-size: 1.1em;
+    }
+
+    pre {
+        padding: 12px;
+        border-radius: 10px;
+        margin: 10px 0;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chats {
+        padding: 10px 8px;
+    }
+
+    .userMessage {
+        max-width: 90%;
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+
+    .gptMessage {
+        font-size: 13px;
+    }
+
+    pre {
+        padding: 10px;
+        font-size: 12px;
+    }
 }
